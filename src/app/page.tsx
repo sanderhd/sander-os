@@ -1,63 +1,41 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { User, Shell } from "lucide-react";
+import TimeBar from "./components/TimeBar";
 
-export default function Home() {
+export default function LockScreen() {
   const router = useRouter()
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-
-  const handleLogin = (guest = false) => {
-    const user = guest ? "guest" : username || "guest"
-    router.push(`/desktop?user=${encodeURIComponent(user)}`)
-  }
+  const [time, setTime] = useState(new Date());  
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-slate-900 to-sky-900 flex items-center justify-center text-white">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault()
-          handleLogin()
-        }}
-        className="w-96 bg-slate-800/60 backdrop-blur-sm rounded-lg p-8 shadow-lg"
-      >
-        <h1 className="text-2xl font-semibold mb-4 text-center">Sander OS</h1>
-
-        <label className="block text-sm mb-1">Username</label>
-        <input
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          placeholder="Username"
-          className="w-full mb-3 px-3 py-2 rounded bg-slate-700/40 border border-slate-600 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
-
-        <label className="block text-sm mb-1">Password</label>
-        <input
-          value={password}
-          onChange={(e) => setUsername(e.target.value)}
-          type="password"
-          placeholder="••••••" 
-          className="w-full mb-3 px-3 py-2 rounded bg-slate-700/40 border border-slate-600 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-sky-500"
-        />
-
-        <div className="flex justify-between items-center">
-          <button
-            type="submit"
-            className="px-4 py-2 rounded bg-sky-500 hover:bg-sky-600 text-white"
-          >
-            Log in
-          </button>
-
-          <button
-            type="button"
-            onClick={() => handleLogin(true)}
-            className="px-3 py-2 rounded border border-slate-600 text-slate-200 hover:bg-slate-700/30"
-          >
-            Guest
-          </button>
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white">
+      <TimeBar />
+      
+      <div className="flex flex-col items-center gap-6">
+        <div className="w-28 h-28 rounded-full bg-slate-800/50 flex items-center justify-center shadow-inner">
+          <User size={50} />
         </div>
-      </form>
+
+        <div className="text-center">
+          <div className="text-xl font-semibold">Sander</div>
+        </div>
+
+        <button
+          onClick={() => router.push("/login")}
+          className="mt-4 px-6 py-2 rounded-md bg-sky-500 hover:bg-sky-600 text-white focus:outline-none focus:ring-2 focus:ring-sky-400"
+        >
+          Login
+        </button>
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-slate-300 flex items-center gap-2">
+        <div className="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center">
+          <Shell />
+        </div>
+          <div className="text-sm font-medium">Sander OS</div>
+      </div>
     </div>
   )
 }
