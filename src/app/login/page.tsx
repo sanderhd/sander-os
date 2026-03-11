@@ -13,6 +13,8 @@ export default function Login() {
 
   const hardcodedPassword = "SuperDevSanderOS";
 
+  console.log("SuperDevSanderOS");
+
   useEffect(() => {
     const id = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(id);
