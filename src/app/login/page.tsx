@@ -66,6 +66,8 @@ export default function Login() {
             />
           </div>
 
+          <p className="text-sm text-slate-400">Hint: Browser Console</p>
+
           {error && <div className="text-red-400 text-sm mb-2">{error}</div>}
 
           <div className="flex w-full justify-center items-center">

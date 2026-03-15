@@ -9,8 +9,8 @@ export const APP_REGISTRY: AppDefinition[] = [
     id: "files",
     title: "Files",
     icon: <Folder size={28} />,
-    defaultWidth: 620,
-    defaultHeight: 420,
+    defaultWidth: 1024,
+    defaultHeight: 824,
     content: <FilesApp />,
   },
   {
